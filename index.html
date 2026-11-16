@@ -11,353 +11,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&family=TASA+Explorer:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&family=Special+Gothic+Expanded+One&family=TASA+Explorer:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    @font-face {
-      font-family: 'Zagora';
-      src: url('Zagora.ttf') format('truetype'),
-           url('Zagora.otf') format('opentype');
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    @font-face {
-      font-family: 'PervitinaDex';
-      src: url('Pervitina-Dex-FFP.ttf') format('truetype'),
-           url('PervitinaDex.otf') format('opentype');
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    :root {
-      --dracula-bg: #181920;
-      --dracula-card: rgba(38, 40, 56, 0.95);
-      --dracula-purple: #bd93f9;
-      --dracula-pink: #ff79c6;
-      --dracula-yellow: #ffee8c;
-      --dracula-cyan: #8be9fd;
-      --dracula-green: #50fa7b;
-      --accent-gold: #ffb86c;
-      --gold-gradient: linear-gradient(135deg, #ffe082 0%, #ffb86c 50%, #ff80ab 100%);
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: var(--dracula-bg) !important;
-      font-family: 'TASA Explorer', 'Segoe UI', Roboto, sans-serif;
-      color: #ffffff !important;
-      word-break: normal;
-      hyphens: none;
-    }
-
-    #particles-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .reveal {
-      font-family: 'TASA Explorer', sans-serif;
-      position: relative;
-      z-index: 1;
-      background: transparent !important;
-    }
-
-    .reveal .slides, 
-    .reveal .slides section, 
-    .reveal .backgrounds, 
-    .reveal .slide-background {
-      background: transparent !important;
-    }
-
-    .reveal .slides section {
-      box-sizing: border-box;
-      padding: 10px 20px !important;
-    }
-
-    .reveal h1, .reveal h2, .reveal h3 {
-      font-family: 'Zagora', 'Segoe UI', sans-serif !important;
-      color: var(--dracula-pink) !important;
-      text-transform: none;
-      font-weight: normal;
-      letter-spacing: 1px;
-      margin-top: 0;
-      text-shadow: 0 0 18px rgba(255, 121, 198, 0.5);
-    }
-
-    .reveal h2 {
-      font-size: 1.45em;
-      border-bottom: 2px solid var(--accent-gold);
-      padding-bottom: 5px;
-      margin-bottom: 14px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .title-zagora-gold {
-      font-family: 'Zagora', sans-serif !important;
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 12px rgba(255, 184, 108, 0.4));
-    }
-
-    /* Animación flotante discreta para el QR en la esquina */
-    @keyframes floatQR {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
-      100% { transform: translateY(0px); }
-    }
-
-    .qr-corner-box {
-      position: absolute;
-      bottom: -40px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      animation: floatQR 3.5s ease-in-out infinite;
-      z-index: 10;
-    }
-
-    .qr-img {
-      width: 110px;
-      height: 110px;
-      border-radius: 12px;
-      border: 2px solid var(--dracula-pink);
-      box-shadow: 0 0 15px rgba(255, 121, 198, 0.4);
-      object-fit: contain;
-      background: #0d0e12;
-      padding: 4px;
-    }
-
-    /* Tarjetas */
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      align-items: stretch;
-    }
-
-    .card {
-      background: var(--dracula-card);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 184, 108, 0.4);
-      border-radius: 12px;
-      padding: 12px 8px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
-      text-align: center;
-      box-sizing: border-box;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 3px;
-      background: linear-gradient(90deg, var(--accent-gold), var(--dracula-pink));
-    }
-
-    .card i {
-      font-size: 1.5em;
-      color: var(--accent-gold);
-      margin-bottom: 4px;
-      filter: drop-shadow(0 0 10px rgba(255, 184, 108, 0.6));
-    }
-
-    .card h4 {
-      font-family: 'Special Gothic Expanded One', sans-serif;
-      color: var(--dracula-yellow);
-      margin: 4px 0;
-      font-size: 0.72em;
-      line-height: 1.25;
-      letter-spacing: 0.3px;
-      word-wrap: break-word;
-    }
-
-    .card p {
-      font-family: 'TASA Explorer', sans-serif;
-      font-size: 0.65em;
-      line-height: 1.25;
-      margin: 0;
-      color: #ffffff;
-      font-weight: 500;
-    }
-
-    .sub-role {
-      display: block;
-      font-size: 0.85em;
-      color: var(--dracula-cyan);
-      margin-top: 3px;
-      font-weight: bold;
-    }
-
-    .identity-content-box {
-      width: 100%;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 4px;
-    }
-
-    .color-swatch-circle {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: inline-block;
-      box-shadow: 0 0 6px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.3);
-    }
-
-    /* Frontend */
-    .frontend-right-layout {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      width: 100%;
-      height: 100%;
-      justify-content: center;
-    }
-
-    .color-boxes-row-compact {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 6px;
-    }
-
-    .color-box-mini {
-      border-radius: 8px;
-      padding: 6px 4px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      font-size: 0.58em;
-      font-family: monospace;
-      font-weight: bold;
-    }
-
-    .font-compact-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .font-compact-item {
-      background: rgba(0,0,0,0.3);
-      border-left: 3px solid var(--accent-gold);
-      padding: 4px 8px;
-      text-align: left;
-      border-radius: 4px;
-      font-size: 0.62em;
-    }
-
-    /* 3D */
-    .img-container-3d {
-      width: 100%;
-      background: #0d0e12;
-      border: 1px solid rgba(255, 184, 108, 0.4);
-      border-radius: 8px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 6px;
-    }
-
-    .img-container-3d img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: contain;
-    }
-
-    /* FODA */
-    .foda-comp-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    .foda-comp-card {
-      background: var(--dracula-card);
-      border-radius: 12px;
-      padding: 14px 12px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.7);
-      border-top: 4px solid var(--accent-gold);
-    }
-
-    .foda-comp-card h4 {
-      font-family: 'Special Gothic Expanded One', sans-serif;
-      margin: 0 0 8px 0;
-      font-size: 0.78em;
-      color: var(--dracula-yellow);
-    }
-
-    .foda-comp-card ul {
-      margin: 0;
-      padding-left: 16px;
-      font-size: 0.62em;
-      color: #ffffff;
-      line-height: 1.35;
-    }
-
-    .market-stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      width: 100%;
-    }
-
-    .stat-badge {
-      background: var(--dracula-card);
-      border: 1px solid rgba(255, 184, 108, 0.4);
-      border-radius: 12px;
-      padding: 14px 10px;
-      text-align: center;
-    }
-
-    .stat-badge .number {
-      font-size: 1.8em;
-      font-weight: bold;
-      color: var(--accent-gold);
-      display: block;
-      text-shadow: 0 0 10px rgba(255, 184, 108, 0.4);
-    }
-
-    .stat-badge .label {
-      font-size: 0.68em;
-      color: #ffffff;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      align-items: center;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -367,611 +23,824 @@
   <div class="slides">
 
     <!-- 1. PORTADA -->
-    <section style="position: relative;">
-      <img src="minute.png" alt="Minute Logo" style="width: 190px; height: 190px; object-fit: contain; margin-bottom: 10px; filter: drop-shadow(0 0 18px rgba(255,121,198,0.7));">
-      <h1 class="title-zagora-gold" style="font-size: 2.8em; margin-bottom: 4px;">MINUTE</h1>
-      <p style="font-size: 0.75em; color: var(--dracula-yellow); margin-top: 15px; font-weight: 600; letter-spacing: 1px;">
-        Proyecto de Egreso ✦ 2026
-      </p>
-
-      <!-- QR en esquina inferior derecha -->
-      <div class="qr-corner-box">
-        <img src="qr.png" alt="QR Code" class="qr-img">
-        <span style="font-size: 0.58em; color: var(--dracula-cyan); font-weight: bold;">Escaneá el QR</span>
+    <section>
+      <div class="cover-wrap">
+        <img src="minute.png" alt="Minute Logo" class="cover-logo">
+        <h1 class="title-zagora-gold cover-title">MINUTE</h1>
+        <div class="cover-tagline">SOLUCIONES DIGITALES A MEDIDA</div>
+        <div class="cover-year">Proyecto de Egreso · 2026</div>
       </div>
     </section>
 
-    <!-- 2. MIEMBROS FUNDADORES -->
+    <!-- 2. QR A MINUTE.UY (sin textos, QR grande) -->
     <section>
-      <h2>Miembros Fundadores</h2>
-      <div class="grid-container" style="grid-template-columns: repeat(5, 1fr);">
-        <div class="card">
-          <i class="fa-solid fa-code"></i>
-          <h4>Lucas Abergo</h4>
-          <p>Backend</p>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-terminal"></i>
-          <h4>Felipe Usanza</h4>
-          <p>Admin. de sistemas</p>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-database"></i>
-          <h4>Mariano Rivadavia</h4>
-          <p>Backend <span class="sub-role">Base de Datos</span></p>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-paint-brush"></i>
-          <h4>Daiara Giovannini</h4>
-          <p>Frontend <span class="sub-role">Diseño, código</span></p>
-        </div>
-        <div class="card">
-          <i class="fa-brands fa-figma"></i>
-          <h4>Liam<br>Tato</h4>
-          <p>Frontend <span class="sub-role">Diseño, código</span></p>
+      <div class="qr-hero-slide">
+        <div class="qr-hero-frame">
+          <img src="qr_minute.png" alt="QR para minute.uy">
         </div>
       </div>
     </section>
 
-    <!-- 3. HERRAMIENTAS UTILIZADAS -->
+    <!-- 3. MIEMBROS FUNDADORES -->
     <section>
-      <h2>Herramientas Utilizadas</h2>
-      <div class="grid-container" style="grid-template-columns: repeat(4, 1fr); gap: 12px;">
-        <div class="card">
+      <h2><i class="fa-solid fa-people-group"></i> Miembros Fundadores</h2>
+      <div class="grid team-grid">
+        <div class="card member-card" style="border-top: 3px solid var(--dracula-cyan);">
+          <div class="icon-circle"><i class="fa-solid fa-code"></i></div>
+          <h4 class="member-name">Lucas<br>Abergo</h4>
+          <div class="member-role">Backend</div>
+        </div>
+        <div class="card member-card" style="border-top: 3px solid var(--accent-gold);">
+          <div class="icon-circle"><i class="fa-solid fa-terminal"></i></div>
+          <h4 class="member-name">Felipe<br>Usanza</h4>
+          <div class="member-role">Backend · Infraestructura</div>
+        </div>
+        <div class="card member-card" style="border-top: 3px solid var(--dracula-cyan);">
+          <div class="icon-circle"><i class="fa-solid fa-database"></i></div>
+          <h4 class="member-name">Mariano<br>Rivadavia</h4>
+          <div class="member-role">Backend · Base de Datos</div>
+        </div>
+        <div class="card member-card" style="border-top: 3px solid var(--dracula-pink);">
+          <div class="icon-circle"><i class="fa-solid fa-paint-brush"></i></div>
+          <h4 class="member-name">Daiara<br>Giovannini</h4>
+          <div class="member-role">Frontend · Diseño</div>
+        </div>
+        <div class="card member-card" style="border-top: 3px solid var(--dracula-pink);">
+          <div class="icon-circle"><i class="fa-brands fa-figma"></i></div>
+          <h4 class="member-name">Iara<br>Tato</h4>
+          <div class="member-role">Frontend · Diseño</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. HERRAMIENTAS -->
+    <section>
+      <h2><i class="fa-solid fa-toolbox"></i> Herramientas Utilizadas</h2>
+      <div class="grid tools-grid">
+        <div class="card tool-card">
           <i class="fa-solid fa-wand-magic-sparkles" style="color: #8be9fd;"></i>
           <h4>Gemini</h4>
-          <p>Consultas</p>
         </div>
-        <div class="card">
+        <div class="card tool-card">
           <i class="fa-solid fa-video" style="color: #ff79c6;"></i>
           <h4>Jitsi / Jami</h4>
-          <p>Reuniones virtuales</p>
         </div>
-        <div class="card">
+        <div class="card tool-card">
           <i class="fa-brands fa-github" style="color: #f8f8f2;"></i>
           <h4>GitHub</h4>
-          <p>Control de versiones</p>
         </div>
-        <div class="card">
+        <div class="card tool-card">
           <i class="fa-solid fa-list-check" style="color: #bd93f9;"></i>
           <h4>Taiga</h4>
-          <p>Gestión de proyecto</p>
         </div>
-        <div class="card">
+        <div class="card tool-card">
           <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i>
           <h4>WhatsApp</h4>
-          <p>Comunicación</p>
         </div>
-        <div class="card">
+        <div class="card tool-card">
           <i class="fa-brands fa-google-drive" style="color: #ffb86c;"></i>
           <h4>Google Drive</h4>
-          <p>Documentación</p>
         </div>
-        <div class="card" style="grid-column: span 2;">
+        <div class="card tool-card span-2">
           <i class="fa-solid fa-cloud-arrow-up" style="color: #50fa7b;"></i>
           <h4>Backblaze</h4>
-          <p>Almacenamiento remoto de backups</p>
         </div>
       </div>
     </section>
 
-    <!-- 4. IDENTIDAD DE LA EMPRESA -->
-    <section>
-      <h2>Identidad de la Empresa</h2>
-      <div class="grid-container">
-        <div class="card">
-          <div class="identity-content-box">
-            <img src="minute.png" alt="Logo" style="max-height: 50px; object-fit: contain;">
+    <!-- 5. IDENTIDAD -->
+    <section data-group="company">
+      <h2><i class="fa-solid fa-fingerprint"></i> Identidad de la Empresa</h2>
+      <div class="grid identity-grid">
+        <div class="card identity-card">
+          <img src="minute.png" alt="Logo de Minute" class="identity-logo">
+          <h3>Topo</h3>
+          <div class="chip-row">
+            <span class="chip"><i class="fa-solid fa-minimize"></i> Pequeño</span>
+            <span class="chip"><i class="fa-solid fa-brain"></i> Inteligente</span>
           </div>
-          <h4>Logo</h4>
-          <p style="margin-top: 4px;">Símbolo de inteligencia y juego de palabras.</p>
         </div>
-        <div class="card">
-          <div class="identity-content-box">
-            <span class="title-zagora-gold" style="font-size: 1.4em;">Minute</span>
+
+        <div class="card identity-card">
+          <div class="identity-word">Minute</div>
+          <h3>Dos significados</h3>
+          <div class="chip-row">
+            <span class="chip"><i class="fa-solid fa-clock"></i> Minuto</span>
+            <span class="chip"><i class="fa-solid fa-bolt"></i> Eficiencia</span>
           </div>
-          <h4>Nombre</h4>
-          <p style="margin-top: 4px;">Optimización del tiempo y detalles.</p>
         </div>
-        <div class="card">
-          <div class="identity-content-box" style="gap: 6px;">
-            <span class="color-swatch-circle" style="background: #ffb86c;" title="Dorado"></span>
-            <span class="color-swatch-circle" style="background: #282a36;" title="Oscuro"></span>
-            <span class="color-swatch-circle" style="background: #ff79c6;" title="Violeta"></span>
+
+        <div class="card identity-card">
+          <div class="palette-list">
+            <div class="palette-row">
+              <span class="swatch" style="background: #ffb86c;"></span>
+              <span class="palette-name">Dorado<span>#FFB86C</span></span>
+            </div>
+            <div class="palette-row">
+              <span class="swatch" style="background: #4A28C4;"></span>
+              <span class="palette-name">Violeta<span>#4A28C4</span></span>
+            </div>
+            <div class="palette-row">
+              <span class="swatch" style="background: #050608;"></span>
+              <span class="palette-name">Oscuro<span>#050608</span></span>
+            </div>
           </div>
-          <h4>Estética</h4>
-          <p style="margin-top: 4px;">Dorado combinado con tonos oscuros.</p>
+          <h3>Contraste y exclusividad</h3>
         </div>
       </div>
     </section>
 
-    <!-- 5. MISIÓN, VISIÓN Y VALORES -->
-    <section>
-      <h2>Misión, Visión y Valores</h2>
-      <div class="grid-container">
-        <div class="card">
-          <i class="fa-solid fa-bullseye"></i>
-          <h4>Misión</h4>
-          <p>Diseñar plataformas web que encajen perfectamente con lo que cada negocio precisa.</p>
+    <!-- 6. MISIÓN, VISIÓN Y VALORES -->
+    <section data-group="company">
+      <h2><i class="fa-solid fa-compass"></i> Misión, Visión y Valores</h2>
+      <div class="grid mvv-grid cols-3">
+        <div class="card mvv-card">
+          <div class="icon-circle"><i class="fa-solid fa-bullseye"></i></div>
+          <h3>Misión</h3>
+          <div class="mvv-key">Soluciones a la medida<br>de cada cliente</div>
         </div>
-        <div class="card">
-          <i class="fa-solid fa-eye"></i>
-          <h4>Visión</h4>
-          <p>Consolidarnos referentes del desarrollo web en Uruguay.</p>
+        <div class="card mvv-card">
+          <div class="icon-circle"><i class="fa-solid fa-eye"></i></div>
+          <h3>Visión</h3>
+          <div class="mvv-key">Referentes del desarrollo<br>web en Uruguay</div>
         </div>
-        <div class="card">
-          <i class="fa-solid fa-handshake"></i>
-          <h4>Valores</h4>
-          <p>Trato cercano, confidencialidad y calidad.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. FORMACIÓN Y MODELO DE NEGOCIO -->
-    <section>
-      <section>
-        <h2>Formación de la Empresa</h2>
-        <div class="grid-container">
-          <div class="card">
-            <i class="fa-solid fa-scale-balanced"></i>
-            <h4>S.R.L.</h4>
-            <p>Menos gastos operativos.</p>
-          </div>
-          <div class="card">
-            <i class="fa-solid fa-calculator"></i>
-            <h4>Costo por Hora</h4>
-            <p>Valor base de $1.000 UYU para cubrir constitución y salarios.</p>
-          </div>
-          <div class="card">
-            <i class="fa-solid fa-chart-line"></i>
-            <h4>Viabilidad</h4>
-            <p>Costo de FitPower estimado de ~$304.000 UYU.</p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Modelo de Negocios</h2>
-        <div class="grid-container">
-          <div class="card">
-            <i class="fa-solid fa-gem"></i>
-            <h4>Propuesta de Valor</h4>
-            <p>Nos ocupamos de todas las etapas de desarrollo y mantenimiento.</p>
-          </div>
-          <div class="card">
-            <i class="fa-solid fa-building-user"></i>
-            <h4>Clientes Objetivo</h4>
-            <p>Negocios y organizaciones que quieren su propia plataforma digital.</p>
-          </div>
-          <div class="card">
-            <i class="fa-solid fa-list-check"></i>
-            <h4>Relación con el Cliente</h4>
-            <p>Comunicación cercana y avances constantes.</p>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <!-- 7. ANÁLISIS DE MERCADO Y FODA -->
-    <section>
-      <section>
-        <h2>Análisis de Mercado</h2>
-        <div class="one-col" style="max-width: 900px; margin: 0 auto;">
-          <div class="market-stats-grid">
-            <div class="stat-badge">
-              <span class="number" data-target="10" data-suffix="">0</span>
-              <span class="label">Gimnasios Entrevistados</span>
-            </div>
-            <div class="stat-badge">
-              <span class="number" data-target="10" data-suffix="%">0%</span>
-              <span class="label">Poseen Sitio Web (1 de 10)</span>
-            </div>
-            <div class="stat-badge">
-              <span class="number" data-target="60" data-suffix="%">0%</span>
-              <span class="label">Usa Software Comercial</span>
-            </div>
-            <div class="stat-badge">
-              <span class="number" data-target="50" data-suffix="%">0%</span>
-              <span class="label">Lo usan parcialmente</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FODA General -->
-      <section data-transition="zoom-in fade-out">
-        <h2>Estructura de Análisis FODA</h2>
-        <div class="grid-container" style="grid-template-columns: 1fr 1fr;">
-          <div class="card" style="border-top: 4px solid var(--dracula-green);">
-            <i class="fa-solid fa-shield-halved" style="color: var(--dracula-green); font-size: 1.4em; margin-bottom: 2px;"></i>
-            <h3 style="color: var(--dracula-green) !important; margin: 0; font-size: 1.1em;">Fortalezas</h3>
-            <p>Factores internos positivos y ventajas competitivas del proyecto.</p>
-          </div>
-          <div class="card" style="border-top: 4px solid var(--accent-gold);">
-            <i class="fa-solid fa-lightbulb" style="color: var(--accent-gold); font-size: 1.4em; margin-bottom: 2px;"></i>
-            <h3 style="color: var(--accent-gold) !important; margin: 0; font-size: 1.1em;">Oportunidades</h3>
-            <p>Factores externos del entorno para aprovechar y crecer.</p>
-          </div>
-          <div class="card" style="border-top: 4px solid var(--dracula-pink);">
-            <i class="fa-solid fa-bug" style="color: var(--dracula-pink); font-size: 1.4em; margin-bottom: 2px;"></i>
-            <h3 style="color: var(--dracula-pink) !important; margin: 0; font-size: 1.1em;">Debilidades</h3>
-            <p>Limitaciones internas que debemos gestionar y superar.</p>
-          </div>
-          <div class="card" style="border-top: 4px solid var(--dracula-cyan);">
-            <i class="fa-solid fa-triangle-exclamation" style="color: var(--dracula-cyan); font-size: 1.4em; margin-bottom: 2px;"></i>
-            <h3 style="color: var(--dracula-cyan) !important; margin: 0; font-size: 1.1em;">Amenazas</h3>
-            <p>Riesgos externos del mercado que debemos monitorear.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- FORTALEZAS -->
-      <section data-transition="convex">
-        <h2 style="color: var(--dracula-green) !important; border-bottom-color: var(--dracula-green);">
-          <i class="fa-solid fa-shield-halved"></i> Fortalezas
-        </h2>
-        <div class="foda-comp-grid">
-          <div class="foda-comp-card" style="border-top-color: var(--dracula-green);">
-            <h4><i class="fa-solid fa-building"></i> Nuestra Empresa</h4>
-            <ul>
-              <li>Conocimiento directo del nicho investigado.</li>
-              <li>Integración de marketing y gestión en un solo canal.</li>
-              <li>Flexibilidad para adaptar la solución al cliente.</li>
-            </ul>
-          </div>
-          <div class="foda-comp-card" style="border-top-color: var(--dracula-green);">
-            <h4><i class="fa-solid fa-users-rectangle"></i> Competencia</h4>
-            <ul>
-              <li>Reconocimiento y trayectoria en el mercado local.</li>
-              <li>Costos de suscripción bajos y alcance masivo.</li>
-              <li>Sistemas completos e intuitivos para casos estándar.</li>
-            </ul>
-          </div>
-          <div class="foda-comp-card" style="border-top-color: var(--dracula-green);">
-            <h4><i class="fa-solid fa-bolt"></i> FitPower (Producto)</h4>
-            <ul>
-              <li>Diseño moderno, limpio y 100% responsivo.</li>
-              <li>Base de datos aislada e individual por cliente.</li>
-              <li>Código escalable con soporte directo y rápido.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- DEBILIDADES -->
-      <section data-transition="convex">
-        <h2 style="color: var(--dracula-pink) !important; border-bottom-color: var(--dracula-pink);">
-          <i class="fa-solid fa-bug"></i> Debilidades
-        </h2>
-        <div class="foda-comp-grid">
-          <div class="foda-comp-card" style="border-top-color: var(--dracula-pink);">
-            <h4><i class="fa-solid fa-building"></i> Nuestra Empresa</h4>
-            <ul>
-              <li>Inexperiencia profesional inicial del equipo.</li>
-              <li>Mayor tiempo requerido para entregar desarrollos.</li>
-              <li>Inversión inicial más alta que soluciones estándar.</li>
-            </ul>
-          </div>
-          <div class="foda-comp-card" style="border-top-color: var(--dracula-pink);">
-            <h4><i class="fa-solid fa-users-rectangle"></i> Competencia</h4>
-            <ul>
-              <li>Interfases genéricas y sobrecargadas.</li>
-              <li>Sin personalización ni marca propia del gimnasio.</li>
-              <li>50% de clientes debe usar herramientas externas.</li>
-            </ul>
-          </div>
-          <div class="foda-comp-card" style="border-top-color: var(--dracula-pink);">
-            <h4><i class="fa-solid fa-bolt"></i> FitPower (Producto)</h4>
-            <ul>
-              <li>Primer desarrollo entregado sin historial previo.</li>
-              <li>Sin aplicación nativa en tiendas de descarga.</li>
-              <li>Requiere estrategia adicional de posicionamiento SEO</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- OPORTUNIDADES -->
-      <section data-transition="convex">
-        <h2 style="color: var(--accent-gold) !important; border-bottom-color: var(--accent-gold);">
-          <i class="fa-solid fa-lightbulb"></i> Oportunidades
-        </h2>
-        <div class="foda-comp-grid">
-          <div class="foda-comp-card" style="border-top-color: var(--accent-gold);">
-            <h4><i class="fa-solid fa-building"></i> Nuestra Empresa</h4>
-            <ul>
-              <li>Escalabilidad hacia otros sectores de la salud.</li>
-              <li>Alta demanda por software representativo.</li>
-              <li>Captar clientes descontentos con la competencia.</li>
-            </ul>
-          </div>
-          <div class="foda-comp-card" style="border-top-color: var(--accent-gold);">
-            <h4><i class="fa-solid fa-users-rectangle"></i> Competencia</h4>
-            <ul>
-              <li>Crecimiento de la digitalización general del rubro.</li>
-              <li>Aumento de la demanda para automatizar cobros.</li>
-              <li>Interés global creciente en el bienestar físico.</li>
-            </ul>
-          </div>
-          <div class="foda-comp-card" style="border-top-color: var(--accent-gold);">
-            <h4><i class="fa-solid fa-bolt"></i> FitPower (Producto)</h4>
-            <ul>
-              <li>Automatización fluida en la gestión diaria.</li>
-              <li>Exclusividad de marca en la zona de cobertura.</li>
-              <li>Atracción de clientes corporativos de mayor tamaño.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- AMENAZAS -->
-      <section data-transition="convex">
-        <h2 style="color: var(--dracula-cyan) !important; border-bottom-color: var(--dracula-cyan);">
-          <i class="fa-solid fa-triangle-exclamation"></i> Amenazas
-        </h2>
-        <div class="foda-comp-grid">
-          <div class="foda-comp-card" style="border-top-color: var(--dracula-cyan);">
-            <h4><i class="fa-solid fa-building"></i> Nuestra Empresa</h4>
-            <ul>
-              <li>Falta de popularidad inicial en el sector.</li>
-              <li>Crecimiento rápido de competidores consolidados.</li>
-              <li>Preferencia de ciertos clientes por métodos viejos.</li>
-            </ul>
-          </div>
-          <div class="foda-comp-card" style="border-top-color: var(--dracula-cyan);">
-            <h4><i class="fa-solid fa-users-rectangle"></i> Competencia</h4>
-            <ul>
-              <li>Bajas constantes por no aprovechar el software.</li>
-              <li>Preocupación por la seguridad de datos compartidos.</li>
-              <li>Rigidez para satisfacer requerimientos a medida.</li>
-            </ul>
-          </div>
-          <div class="foda-comp-card" style="border-top-color: var(--dracula-cyan);">
-            <h4><i class="fa-solid fa-bolt"></i> FitPower (Producto)</h4>
-            <ul>
-              <li>Cambios en políticas de navegadores web.</li>
-              <li>Ajustes o fallos en pasarelas de pago integradas.</li>
-              <li>Obsolescencia rápida de librerías de terceros.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <!-- 8. VALOR PARA LA SOCIEDAD Y ESPACIO FÍSICO -->
-    <section>
-      <section>
-        <h2>Valor para la sociedad</h2>
-        <div class="two-col">
-          <div class="card" style="text-align: left;">
-            <p style="font-size:0.78em; margin-bottom: 5px; color:var(--accent-gold); font-weight:bold;"><i class="fa-solid fa-user-gear"></i> Para el Personal</p>
-            <p style="font-size: 0.7em;">Baja la carga horaria de tareas más repetitivas.</p>
-          </div>
-          <div class="card" style="text-align: left;">
-            <p style="font-size:0.78em; margin-bottom: 5px; color:var(--accent-gold); font-weight:bold;"><i class="fa-solid fa-users"></i> Para el Cliente Final</p>
-            <p style="font-size: 0.7em;">Facilita comunicación y hace que el local destaque frente a la competencia.</p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Espacio Físico (Modelo 3D)</h2>
-        <div class="two-col">
-          <div class="card">
-            <i class="fa-solid fa-door-open"></i>
-            <h4>Planta Baja</h4>
-            <p>Recepción, vestuarios y área de movilidad.</p>
-            <div class="img-container-3d">
-              <img src="1erpiso.jpeg" alt="modelo Planta Baja">
-            </div>
-          </div>
-          <div class="card">
-            <i class="fa-solid fa-dumbbell"></i>
-            <h4>Primer Piso</h4>
-            <p>Espacio principal de musculación y salas de entrenamiento funcional.</p>
-            <div class="img-container-3d">
-              <img src="2dopiso.jpeg" alt="modelo Primer Piso">
-            </div>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <!-- 9. AGENTES Y FUNCIONALIDADES -->
-    <section>
-      <section>
-        <h2>Agentes</h2>
-        <div class="grid-container">
-          <div class="card">
-            <i class="fa-solid fa-user"></i>
-            <h4>Socios</h4>
-            <p>Acceso a sus rutinas, clases y estado de cuotas.</p>
-          </div>
-          <div class="card">
-            <i class="fa-solid fa-person-running"></i>
-            <h4>Entrenadores</h4>
-            <p>Armar y asignar rutinas.</p>
-          </div>
-          <div class="card">
-            <i class="fa-solid fa-chalkboard-user"></i>
-            <h4>Profesores</h4>
-            <p>Control sobre la asistencia a clases grupales.</p>
-          </div>
-          <div class="card">
-            <i class="fa-solid fa-user-gear"></i>
-            <h4>Administradores</h4>
-            <p>Control general del negocio.</p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Funcionalidades Exclusivas</h2>
-        <div class="grid-container">
-          <div class="card">
-            <i class="fa-solid fa-comments"></i>
-            <h4>Reseñas</h4>
-            <p>Opiniones reales de socios.</p>
-          </div>
-          <div class="card">
-            <i class="fa-solid fa-calendar-days"></i>
-            <h4>Módulo Profesor</h4>
-            <p>Mejora coordinación de las actividades grupales.</p>
-          </div>
-          <div class="card">
-            <i class="fa-solid fa-boxes-stacked"></i>
-            <h4>Control de Inventario</h4>
-            <p>Gestión de stock de los productos que se venden en el local.</p>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <!-- 10. PROGRAMACIÓN FRONTEND -->
-    <section>
-      <h2>Desarrollo Frontend</h2>
-      <div class="two-col">
-        <div class="card" style="text-align: left;">
-          <p style="font-size:0.75em; margin-bottom: 4px; color:var(--accent-gold); font-weight:bold;"><i class="fa-solid fa-palette"></i> Diseño</p>
-          <p style="font-size: 0.65em; margin-bottom: 8px;">Hecho en Figma, se usó como referencia al desarrollar las vistas reales.</p>
-          <p style="font-size:0.75em; margin-bottom: 4px; color:var(--accent-gold); font-weight:bold;"><i class="fa-solid fa-mobile-screen-button"></i> Implementación</p>
-          <p style="font-size: 0.65em; margin: 0;">Se adaptó a celulares, tablets y computadoras.</p>
-        </div>
-
-        <div class="frontend-right-layout">
-          <div class="color-boxes-row-compact">
-            <div class="color-box-mini" style="background: #050608; border: 1px solid #6272a4; color: #ffffff;">
-              Fondo<br><span>#050608</span>
-            </div>
-            <div class="color-box-mini" style="background: #4A28C4; color: #fff;">
-              Primario<br>#4A28C4
-            </div>
-            <div class="color-box-mini" style="background: #E5ACFF; color: #282a36;">
-              Acento<br>#E5ACFF
-            </div>
-          </div>
-
-          <div class="font-compact-list">
-            <div class="font-compact-item" style="font-family: 'PervitinaDex', sans-serif; color: var(--dracula-pink);">
-            Pervitina Dex
-            </div>
-            <div class="font-compact-item" style="font-family: 'Special Gothic Expanded One', sans-serif; color: var(--dracula-yellow);">
-            Special Gothic Expanded One
-            </div>
-            <div class="font-compact-item" style="font-family: 'TASA Explorer', sans-serif; color: #ffffff;">
-            TASA Explorer
-            </div>
+        <div class="card mvv-card">
+          <div class="icon-circle"><i class="fa-solid fa-handshake"></i></div>
+          <h3>Valores</h3>
+          <div class="chip-row">
+            <span class="chip"><i class="fa-solid fa-heart"></i> Atención cercana</span>
+            <span class="chip"><i class="fa-solid fa-lock"></i> Confidencialidad</span>
+            <span class="chip"><i class="fa-solid fa-check-double"></i> Buenas prácticas</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 11. PROGRAMACIÓN BACKEND -->
-    <section>
-      <h2>Desarrollo Backend</h2>
-      <div class="grid-container">
-        <div class="card">
-          <i class="fa-solid fa-layer-group"></i>
-          <h4>Modelo en Capas</h4>
-          <p>Separa cada responsabilidad para facilitar cambios.</p>
+    <!-- 7. FORMACIÓN Y MODELO DE NEGOCIO -->
+    <section data-group="formacion">
+      <h2><i class="fa-solid fa-scale-balanced"></i> Formación de la Empresa</h2>
+      <div class="grid kpi-grid">
+        <div class="card kpi-card">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <div class="kpi-value">S.R.L.</div>
+          <div class="kpi-label">Forma jurídica</div>
         </div>
-        <div class="card">
+        <div class="card kpi-card">
+          <i class="fa-solid fa-clock"></i>
+          <div class="kpi-value">$1.000</div>
+          <div class="kpi-label">Costo por hora</div>
+        </div>
+        <div class="card kpi-card">
+          <i class="fa-solid fa-code"></i>
+          <div class="kpi-value">250 h</div>
+          <div class="kpi-label">Desarrollo FitPower</div>
+        </div>
+        <div class="card kpi-card">
+          <i class="fa-solid fa-sack-dollar"></i>
+          <div class="kpi-value">$304.000</div>
+          <div class="kpi-label">Inversión + IVA</div>
+        </div>
+        <div class="card kpi-card">
+          <i class="fa-solid fa-calendar-check"></i>
+          <div class="kpi-value">2–3</div>
+          <div class="kpi-label">Proyectos al mes</div>
+        </div>
+        <div class="card kpi-card">
+          <i class="fa-solid fa-chart-line"></i>
+          <div class="kpi-value">77%</div>
+          <div class="kpi-label">ROI primer año</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-group="formacion">
+      <h2><i class="fa-solid fa-gem"></i> Modelo de Negocios</h2>
+      <div class="grid model-grid cols-3">
+        <div class="card model-card">
+          <div class="icon-circle"><i class="fa-solid fa-gem"></i></div>
+          <h3>Propuesta de Valor</h3>
+          <div class="chip-row">
+            <span class="chip">Relevamiento</span>
+            <span class="chip">Desarrollo</span>
+            <span class="chip">Mantenimiento</span>
+          </div>
+        </div>
+        <div class="card model-card">
+          <div class="icon-circle"><i class="fa-solid fa-building-user"></i></div>
+          <h3>Clientes Objetivo</h3>
+          <div class="chip-row">
+            <span class="chip">Empresas</span>
+            <span class="chip">Instituciones</span>
+            <span class="chip">Plataforma propia</span>
+          </div>
+        </div>
+        <div class="card model-card">
+          <div class="icon-circle"><i class="fa-solid fa-handshake"></i></div>
+          <h3>Relación con el Cliente</h3>
+          <div class="chip-row">
+            <span class="chip">Seguimiento continuo</span>
+            <span class="chip">Expectativas claras</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ANÁLISIS DE MERCADO Y FODA -->
+    <section data-group="formacion">
+      <h2><i class="fa-solid fa-magnifying-glass-chart"></i> Análisis de Mercado</h2>
+
+      <div class="market-top">
+        <div class="market-big-stat">
+          <div class="num count-up" data-target="10">0</div>
+          <div class="txt">Gimnasios<br>entrevistados</div>
+        </div>
+        <div class="chip-row">
+          <span class="chip"><i class="fa-solid fa-location-dot"></i> Atlántida</span>
+          <span class="chip"><i class="fa-solid fa-location-dot"></i> City Golf</span>
+          <span class="chip"><i class="fa-solid fa-location-dot"></i> Villa Argentina</span>
+        </div>
+      </div>
+
+      <div class="market-charts">
+        <div class="card donut-card">
+          <div class="donut-wrap">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <defs>
+                <linearGradient id="donutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffe082"></stop>
+                  <stop offset="55%" stop-color="#ffb86c"></stop>
+                  <stop offset="100%" stop-color="#ff79c6"></stop>
+                </linearGradient>
+              </defs>
+              <circle class="donut-bg" cx="100" cy="100" r="80"></circle>
+              <circle class="donut-fill" cx="100" cy="100" r="80"></circle>
+            </svg>
+            <div class="donut-center">
+              <strong>1/10</strong>
+              <span>tiene web</span>
+            </div>
+          </div>
+          <h3>Sitio web propio</h3>
+        </div>
+
+        <div class="card bars-card">
+          <h3>Uso de canales y herramientas</h3>
+          <div class="bars-list">
+            <div class="bar-row">
+              <div class="bar-label">Redes sociales</div>
+              <div class="bar-track"><div class="bar-fill gold" style="--w: 100%;"></div></div>
+              <div class="bar-value">100%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">App de gestión</div>
+              <div class="bar-track"><div class="bar-fill" style="--w: 60%;"></div></div>
+              <div class="bar-value">60%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">La usa a medias</div>
+              <div class="bar-track"><div class="bar-fill cyan" style="--w: 30%;"></div></div>
+              <div class="bar-value">30%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Sitio web propio</div>
+              <div class="bar-track"><div class="bar-fill green" style="--w: 10%;"></div></div>
+              <div class="bar-value">10%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-strip">
+        <i class="fa-solid fa-lightbulb"></i>
+        <div class="chip-row">
+          <span class="chip"><i class="fa-solid fa-crosshairs"></i> Producto enfocado</span>
+          <span class="chip"><i class="fa-solid fa-feather"></i> Sin sobrecarga</span>
+          <span class="chip"><i class="fa-solid fa-fingerprint"></i> Identidad propia</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><i class="fa-solid fa-table-cells-large"></i> Análisis FODA</h2>
+      <div class="foda-board">
+        <div class="card foda-quadrant" style="border-top: 4px solid var(--dracula-green); color: var(--dracula-green);">
           <i class="fa-solid fa-shield-halved"></i>
-          <h4>Control de Accesos</h4>
-          <p>Validación de roles en cada ruta para proteger las partes de administración.</p>
+          <h3 style="color: var(--dracula-green) !important;">Fortalezas</h3>
+          <div class="letter" style="color: var(--dracula-green);">F</div>
         </div>
-        <div class="card">
-          <i class="fa-solid fa-lock"></i>
-          <h4>Seguridad</h4>
-          <p>Protección contra accesos indebidos y cifrado para credenciales.</p>
+        <div class="card foda-quadrant" style="border-top: 4px solid var(--accent-gold); color: var(--accent-gold);">
+          <i class="fa-solid fa-lightbulb"></i>
+          <h3 style="color: var(--accent-gold) !important;">Oportunidades</h3>
+          <div class="letter" style="color: var(--accent-gold);">O</div>
+        </div>
+        <div class="card foda-quadrant" style="border-top: 4px solid var(--dracula-pink); color: var(--dracula-pink);">
+          <i class="fa-solid fa-bug"></i>
+          <h3 style="color: var(--dracula-pink) !important;">Debilidades</h3>
+          <div class="letter" style="color: var(--dracula-pink);">D</div>
+        </div>
+        <div class="card foda-quadrant" style="border-top: 4px solid var(--dracula-cyan); color: var(--dracula-cyan);">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <h3 style="color: var(--dracula-cyan) !important;">Amenazas</h3>
+          <div class="letter" style="color: var(--dracula-cyan);">A</div>
         </div>
       </div>
     </section>
 
-    <!-- 12. ADMINISTRACIÓN DE SISTEMAS -->
-    <section>
-      <section>
-        <h2>Administración de Sistemas</h2>
-        <div class="card" style="text-align: left; max-width: 950px; margin: 0 auto;">
-          <h4 style="font-size: 0.85em; color: var(--accent-gold);"><i class="fa-solid fa-server"></i> Relevamiento e Infraestructura</h4>
-          <p style="font-size: 0.72em; line-height: 1.4;">
-            Desplegado sobre el sistema operativo <strong>OpenSUSE</strong> dentro de un VPS contratado en <strong>VPSDime</strong>.
-          </p>
-          <ul style="font-size: 0.65em; color: #ffffff; margin-top: 8px; padding-left: 18px;">
-            <li><strong>OpenSUSE:</strong> Abundancia de documentación y modelo de versionado <em>rolling release</em> (versión única en constante actualización sin pérdida de soporte).</li>
-            <li><strong>VPSDime:</strong> Bajo costo de operación respecto a la competencia manteniendo calidad y soporte nativo para OpenSUSE.</li>
-          </ul>
+    <section data-transition="convex">
+      <h2 style="color: var(--dracula-green) !important; border-bottom-color: var(--dracula-green);">
+        <i class="fa-solid fa-shield-halved"></i> Fortalezas
+      </h2>
+      <div class="foda-visual-grid">
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-green);">
+          <i class="fa-solid fa-building big-icon" style="color: var(--dracula-green);"></i>
+          <h3>Nuestra Empresa</h3>
+          <div class="letter-bg" style="color: var(--dracula-green);">F</div>
         </div>
-      </section>
-
-      <section>
-        <h2>Configuración del Sistema</h2>
-        <div class="card" style="text-align: left; max-width: 950px; margin: 0 auto;">
-          <h4 style="font-size: 0.85em; color: var(--dracula-pink);"><i class="fa-solid fa-user-shield"></i> Filosofía de Menor Privilegio</h4>
-          <p style="font-size: 0.7em; line-height: 1.4;">
-            Cada usuario, servicio y proceso posee estrictamente los permisos indispensables para cumplir su función.
-          </p>
-          <p style="font-size: 0.7em; line-height: 1.4; margin-top: 8px;">
-            Esta lógica se extiende al tráfico de datos: los procesos internos deben ser habilitados manualmente para emitir o recibir información. Así, en caso de vulnerabilidad, se mitiga drásticamente el radio de impacto.
-          </p>
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-green);">
+          <i class="fa-solid fa-users-rectangle big-icon" style="color: var(--dracula-green);"></i>
+          <h3>Competencia</h3>
+          <div class="letter-bg" style="color: var(--dracula-green);">F</div>
         </div>
-      </section>
-
-      <section>
-        <h2>Servicios Utilizados</h2>
-        <div class="two-col">
-          <div class="card">
-            <i class="fa-solid fa-gears" style="color: var(--accent-gold);"></i>
-            <h4>Apache</h4>
-            <p>Motor web sobre el cual corre la aplicación, actuando como intermediario entre los procesos del sistema.</p>
-          </div>
-          <div class="card">
-            <i class="fa-solid fa-database" style="color: var(--dracula-cyan);"></i>
-            <h4>MariaDB</h4>
-            <p>Servidor de base de datos encargado de almacenar y organizar la información ingresada por los usuarios.</p>
-          </div>
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-green);">
+          <i class="fa-solid fa-bolt big-icon" style="color: var(--dracula-green);"></i>
+          <h3>FitPower<br>(Producto)</h3>
+          <div class="letter-bg" style="color: var(--dracula-green);">F</div>
         </div>
-      </section>
-
-      <section>
-        <h2>Copias de Seguridad</h2>
-        <div class="card" style="text-align: left; max-width: 950px; margin: 0 auto;">
-          <h4 style="font-size: 0.85em; color: var(--dracula-green);"><i class="fa-solid fa-cloud-arrow-up"></i> Sistema de Backups</h4>
-          <p style="font-size: 0.7em; line-height: 1.4;">
-            Mecanismo automatizado que garantiza la disponibilidad de la base de datos ante cualquier eventualidad, respaldando la información periódicamente de forma local y en la nube.
-          </p>
-          <p style="font-size: 0.7em; line-height: 1.4; margin-top: 8px;">
-            Además de las tareas programadas, los usuarios habilitados pueden ejecutar respaldos manuales a demanda.
-          </p>
-        </div>
-      </section>
-
-      <section>
-        <h2>Centro de Cómputos (ABML)</h2>
-        <div class="card" style="text-align: left; max-width: 950px; margin: 0 auto;">
-          <h4 style="font-size: 0.85em; color: var(--dracula-yellow);"><i class="fa-solid fa-desktop"></i> Interfaz de Administración</h4>
-          <p style="font-size: 0.7em; line-height: 1.4;">
-            Herramienta gráfica desarrollada para facilitar tareas operativas a usuarios sin conocimientos técnicos avanzados.
-          </p>
-          <p style="font-size: 0.7em; line-height: 1.4; margin-top: 8px;">
-            Permite administrar la actualización de la aplicación web y la gestión integral de copias de seguridad de forma amigable e intuitiva.
-          </p>
-        </div>
-      </section>
+      </div>
     </section>
 
-    <!-- CIERRE -->
-    <section style="position: relative;">
-      <img src="minute.png" alt="Minute Logo" class="floating-logo" style="width: 180px; height: 180px; object-fit: contain; margin-bottom: 10px; filter: drop-shadow(0 0 18px rgba(255,121,198,0.7));">
-      <h1 class="title-zagora-gold" style="font-size: 2.5em; margin-bottom: 4px;">Gracias por escuchar</h1>
-      <p style="font-size: 0.8em; color: var(--dracula-yellow); margin-top: 20px; font-weight: 600; letter-spacing: 1px;">
-        MINUTE S.R.L.
-      </p>
+    <section data-transition="convex">
+      <h2 style="color: var(--dracula-pink) !important; border-bottom-color: var(--dracula-pink);">
+        <i class="fa-solid fa-bug"></i> Debilidades
+      </h2>
+      <div class="foda-visual-grid">
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-pink);">
+          <i class="fa-solid fa-building big-icon" style="color: var(--dracula-pink);"></i>
+          <h3>Nuestra Empresa</h3>
+          <div class="letter-bg" style="color: var(--dracula-pink);">D</div>
+        </div>
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-pink);">
+          <i class="fa-solid fa-users-rectangle big-icon" style="color: var(--dracula-pink);"></i>
+          <h3>Competencia</h3>
+          <div class="letter-bg" style="color: var(--dracula-pink);">D</div>
+        </div>
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-pink);">
+          <i class="fa-solid fa-bolt big-icon" style="color: var(--dracula-pink);"></i>
+          <h3>FitPower<br>(Producto)</h3>
+          <div class="letter-bg" style="color: var(--dracula-pink);">D</div>
+        </div>
+      </div>
+    </section>
 
-      <!-- QR en esquina inferior derecha -->
-      <div class="qr-corner-box">
-        <img src="qr.png" alt="QR Code" class="qr-img">
-        <span style="font-size: 0.58em; color: var(--dracula-cyan); font-weight: bold;">Escaneá el QR</span>
+    <section data-transition="convex">
+      <h2 style="color: var(--accent-gold) !important; border-bottom-color: var(--accent-gold);">
+        <i class="fa-solid fa-lightbulb"></i> Oportunidades
+      </h2>
+      <div class="foda-visual-grid">
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--accent-gold);">
+          <i class="fa-solid fa-building big-icon" style="color: var(--accent-gold);"></i>
+          <h3>Nuestra Empresa</h3>
+          <div class="letter-bg" style="color: var(--accent-gold);">O</div>
+        </div>
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--accent-gold);">
+          <i class="fa-solid fa-users-rectangle big-icon" style="color: var(--accent-gold);"></i>
+          <h3>Competencia</h3>
+          <div class="letter-bg" style="color: var(--accent-gold);">O</div>
+        </div>
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--accent-gold);">
+          <i class="fa-solid fa-bolt big-icon" style="color: var(--accent-gold);"></i>
+          <h3>FitPower<br>(Producto)</h3>
+          <div class="letter-bg" style="color: var(--accent-gold);">O</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-transition="convex">
+      <h2 style="color: var(--dracula-cyan) !important; border-bottom-color: var(--dracula-cyan);">
+        <i class="fa-solid fa-triangle-exclamation"></i> Amenazas
+      </h2>
+      <div class="foda-visual-grid">
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-cyan);">
+          <i class="fa-solid fa-building big-icon" style="color: var(--dracula-cyan);"></i>
+          <h3>Nuestra Empresa</h3>
+          <div class="letter-bg" style="color: var(--dracula-cyan);">A</div>
+        </div>
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-cyan);">
+          <i class="fa-solid fa-users-rectangle big-icon" style="color: var(--dracula-cyan);"></i>
+          <h3>Competencia</h3>
+          <div class="letter-bg" style="color: var(--dracula-cyan);">A</div>
+        </div>
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-cyan);">
+          <i class="fa-solid fa-bolt big-icon" style="color: var(--dracula-cyan);"></i>
+          <h3>FitPower<br>(Producto)</h3>
+          <div class="letter-bg" style="color: var(--dracula-cyan);">A</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. VALOR PARA LA SOCIEDAD Y ESPACIO FÍSICO -->
+    <section data-group="valor">
+      <h2><i class="fa-solid fa-heart"></i> Valor para la Sociedad</h2>
+      <div class="grid value-grid cols-3">
+        <div class="card value-card">
+          <div class="icon-circle"><i class="fa-solid fa-store"></i></div>
+          <h3>Dueños del Gimnasio</h3>
+          <div class="value-key">Más público</div>
+          <span class="chip"><i class="fa-solid fa-globe"></i> Atraído por la web</span>
+        </div>
+        <div class="card value-card">
+          <div class="icon-circle"><i class="fa-solid fa-user-gear"></i></div>
+          <h3>Personal</h3>
+          <div class="value-key">Menos tareas repetitivas</div>
+          <span class="chip"><i class="fa-solid fa-arrows-rotate"></i> Membresías y cobros</span>
+        </div>
+        <div class="card value-card">
+          <div class="icon-circle"><i class="fa-solid fa-users"></i></div>
+          <h3>Clientes</h3>
+          <div class="value-key">Respuestas ágiles</div>
+          <span class="chip"><i class="fa-solid fa-comments"></i> Rutinas, pagos y consultas</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-group="valor" id="espacio-fisico">
+      <h2><i class="fa-solid fa-cube"></i> Espacio Físico</h2>
+      <div class="floor-layout">
+        <div class="floor-frame">
+          <div class="floor-img-wrap">
+            <img id="floor-img" src="GymAreas/PlantaBaja_RecepcionCardio.jpg" alt="Área de recepción y cardio del gimnasio">
+          </div>
+          <div class="floor-level-badge">
+            <i class="fa-solid fa-layer-group"></i>
+            <span id="floor-level-badge">Planta Baja</span>
+          </div>
+        </div>
+
+        <div class="floor-side">
+          <div class="floor-current" id="floor-current">
+            <div class="floor-current-icon">
+              <i id="floor-current-icon" class="fa-solid fa-bell-concierge"></i>
+            </div>
+            <div>
+              <div class="floor-current-level" id="floor-current-level">Planta Baja</div>
+              <h3 class="floor-current-name" id="floor-current-name">Recepción y Cardio</h3>
+            </div>
+          </div>
+
+          <div class="zone-list">
+            <button class="zone-chip" data-zone="recepcion" style="--zone-color: #ffb86c;">
+              <i class="fa-solid fa-bell-concierge"></i>
+              <span>Recepción y Cardio</span>
+            </button>
+            <button class="fragment zone-chip" data-zone="vestuarios" style="--zone-color: #bd93f9;">
+              <i class="fa-solid fa-door-open"></i>
+              <span>Lockers y Vestuarios</span>
+            </button>
+            <button class="fragment zone-chip" data-zone="banos" style="--zone-color: #8be9fd;">
+              <i class="fa-solid fa-restroom"></i>
+              <span>Baños</span>
+            </button>
+            <button class="fragment zone-chip" data-zone="yoga" style="--zone-color: #ff79c6;">
+              <i class="fa-solid fa-spa"></i>
+              <span>Yoga y Clases</span>
+            </button>
+            <button class="fragment zone-chip" data-zone="musculacion" style="--zone-color: #ffee8c;">
+              <i class="fa-solid fa-dumbbell"></i>
+              <span>Musculación</span>
+            </button>
+            <button class="fragment zone-chip" data-zone="multifuncion" style="--zone-color: #50fa7b;">
+              <i class="fa-solid fa-people-group"></i>
+              <span>Área Multifunción</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. ROLES Y FUNCIONALIDADES -->
+    <section data-group="roles">
+      <h2><i class="fa-solid fa-users-gear"></i> Roles de Usuario</h2>
+      <div class="grid agent-grid cols-2">
+        <div class="card agent-card" style="border-top: 4px solid var(--dracula-cyan);">
+          <div class="icon-circle" style="border-color: rgba(139, 233, 253, 0.5);"><i class="fa-solid fa-user" style="color: var(--dracula-cyan);"></i></div>
+          <h3>Socios</h3>
+        </div>
+        <div class="card agent-card" style="border-top: 4px solid var(--accent-gold);">
+          <div class="icon-circle"><i class="fa-solid fa-person-running"></i></div>
+          <h3>Entrenadores</h3>
+        </div>
+        <div class="card agent-card" style="border-top: 4px solid var(--dracula-pink);">
+          <div class="icon-circle" style="border-color: rgba(255, 121, 198, 0.5);"><i class="fa-solid fa-chalkboard-user" style="color: var(--dracula-pink);"></i></div>
+          <h3>Profesores</h3>
+        </div>
+        <div class="card agent-card" style="border-top: 4px solid var(--dracula-green);">
+          <div class="icon-circle" style="border-color: rgba(80, 250, 123, 0.45);"><i class="fa-solid fa-user-gear" style="color: var(--dracula-green);"></i></div>
+          <h3>Administradores</h3>
+        </div>
+      </div>
+    </section>
+
+    <section data-group="roles">
+      <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Funcionalidades Exclusivas</h2>
+      <div class="grid feature-grid cols-3">
+        <div class="card feature-card">
+          <div class="icon-circle"><i class="fa-solid fa-comments"></i></div>
+          <h3>Reseñas</h3>
+          <span class="chip"><i class="fa-solid fa-star"></i> Feedback de socios</span>
+        </div>
+        <div class="card feature-card">
+          <div class="icon-circle"><i class="fa-solid fa-calendar-days"></i></div>
+          <h3>Clases Grupales</h3>
+          <span class="chip"><i class="fa-solid fa-chalkboard-user"></i> Módulo para profesores</span>
+        </div>
+        <div class="card feature-card">
+          <div class="icon-circle"><i class="fa-solid fa-boxes-stacked"></i></div>
+          <h3>Inventario</h3>
+          <span class="chip"><i class="fa-solid fa-cubes"></i> Control de stock</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. PROGRAMACIÓN FRONTEND -->
+    <section data-group="frontend">
+      <h2><i class="fa-solid fa-palette"></i> Diseño Implementado</h2>
+      <div class="design-layout">
+        <div class="tech-stack">
+          <div class="card tech-row" style="--tech: #e34f26;">
+            <i class="fa-brands fa-html5 tech-row-icon"></i>
+            <div class="tech-row-copy">
+              <h3>HTML5</h3>
+              <p>Estructura semántica y accesible: secciones, navegación y formularios con etiquetas reales.</p>
+            </div>
+          </div>
+          <div class="card tech-row" style="--tech: #1572b6;">
+            <i class="fa-brands fa-css3-alt tech-row-icon"></i>
+            <div class="tech-row-copy">
+              <h3>CSS</h3>
+              <p>Estilos personalizados, animaciones y diseño responsive desde cero, sin plantillas.</p>
+            </div>
+          </div>
+          <div class="card tech-row" style="--tech: #f7df1e;">
+            <i class="fa-brands fa-js tech-row-icon"></i>
+            <div class="tech-row-copy">
+              <h3>JavaScript</h3>
+              <p>Interactividad del sitio: menú desplegable, slider de opiniones y efectos al hacer scroll.</p>
+            </div>
+          </div>
+          <div class="card tech-row" style="--tech: #7952b3;">
+            <i class="fa-brands fa-bootstrap tech-row-icon"></i>
+            <div class="tech-row-copy">
+              <h3>Bootstrap</h3>
+              <p>Grilla y utilidades responsive para adaptar el diseño de mobile a escritorio.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="design-side">
+          <div class="palette-grid">
+            <div class="palette-block" style="background: #050608; color: #ffffff;">Fondo<br>#050608</div>
+            <div class="palette-block" style="background: #4A28C4; color: #ffffff;">Primario<br>#4A28C4</div>
+            <div class="palette-block" style="background: #E5ACFF; color: #282a36;">Acento<br>#E5ACFF</div>
+          </div>
+
+          <div class="font-stack">
+            <div class="font-item" style="font-family: 'PervitinaDex', sans-serif; color: var(--dracula-pink);">
+              Pervitina Dex
+            </div>
+            <div class="font-item" style="font-family: 'Special Gothic Expanded One', sans-serif; color: var(--dracula-yellow);">
+              Special Gothic Expanded One
+            </div>
+            <div class="font-item" style="font-family: 'TASA Explorer', sans-serif; color: #ffffff; font-weight: 600;">
+              TASA Explorer
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-group="frontend">
+      <h2><i class="fa-solid fa-arrows-left-right"></i> Responsividad</h2>
+      <div class="responsive-stage">
+        <div class="device desktop">
+          <div class="device-frame">
+            <div class="device-screen">
+            </div>
+          </div>
+          <div class="device-stand"></div>
+          <div class="device-base"></div>
+        </div>
+
+        <div class="device tablet">
+          <div class="device-frame">
+            <div class="device-screen">
+            </div>
+          </div>
+        </div>
+
+        <div class="device phone">
+          <div class="device-frame">
+            <div class="device-screen">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. PROGRAMACIÓN BACKEND -->
+    <section data-group="backend">
+      <h2><i class="fa-solid fa-layer-group"></i> Modelo en Capas</h2>
+      <div class="backend-layout">
+        <div class="layer-stack">
+          <div class="layer" style="--layer-color: #ff79c6;">
+            <i class="fa-solid fa-display"></i>
+            <span>Frontend / Presentación</span>
+          </div>
+          <div class="layer" style="--layer-color: #ffb86c;">
+            <i class="fa-solid fa-route"></i>
+            <span>Rutas / API</span>
+          </div>
+          <div class="layer" style="--layer-color: #bd93f9;">
+            <i class="fa-solid fa-gears"></i>
+            <span>Lógica / Servicios</span>
+          </div>
+          <div class="layer" style="--layer-color: #8be9fd;">
+            <i class="fa-solid fa-database"></i>
+            <span>Acceso a Datos</span>
+          </div>
+          <div class="layer" style="--layer-color: #50fa7b;">
+            <i class="fa-solid fa-server"></i>
+            <span>MariaDB</span>
+          </div>
+        </div>
+
+        <div class="card security-panel">
+          <div class="shield"><i class="fa-solid fa-puzzle-piece"></i></div>
+          <h3>Ventajas de las capas</h3>
+          <div class="security-list">
+            <div class="security-item"><i class="fa-solid fa-arrows-split-up-and-left"></i> Cambios aislados</div>
+            <div class="security-item"><i class="fa-solid fa-recycle"></i> Código reutilizable</div>
+            <div class="security-item"><i class="fa-solid fa-magnifying-glass"></i> Errores localizados</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-group="backend">
+      <h2><i class="fa-solid fa-shield-halved"></i> Seguridad y Datos</h2>
+      <div class="backend-grid">
+        <div class="backend-cards">
+          <div class="card backend-card">
+            <div class="icon-circle" style="border-color: rgba(255, 184, 108, 0.5);">
+              <i class="fa-solid fa-user-shield" style="color: var(--accent-gold);"></i>
+            </div>
+            <h3>Roles y permisos</h3>
+            <p>Cada petición valida la sesión y el rol del usuario: cada perfil accede solo a su panel.</p>
+          </div>
+
+          <div class="card backend-card">
+            <div class="icon-circle" style="border-color: rgba(139, 233, 253, 0.5);">
+              <i class="fa-solid fa-filter" style="color: var(--dracula-cyan);"></i>
+            </div>
+            <h3>Validación y filtros</h3>
+            <p>Formatos, campos obligatorios y datos depurados antes de llegar a la base.</p>
+          </div>
+
+          <div class="card backend-card">
+            <div class="icon-circle" style="border-color: rgba(255, 121, 198, 0.5);">
+              <i class="fa-solid fa-lock" style="color: var(--dracula-pink);"></i>
+            </div>
+            <h3>Contraseñas cifradas</h3>
+            <p>Hash con salt: ni el equipo de desarrollo puede leer las claves de los usuarios.</p>
+          </div>
+
+          <div class="card backend-card">
+            <div class="icon-circle" style="border-color: rgba(80, 250, 123, 0.45);">
+              <i class="fa-solid fa-database" style="color: var(--dracula-green);"></i>
+            </div>
+            <h3>Datos relacionados</h3>
+            <p>MariaDB organiza socios, rutinas, clases, pagos e inventario con integridad referencial.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 13. ADMINISTRACIÓN DE SISTEMAS -->
+    <section data-group="admin">
+      <h2><i class="fa-solid fa-server"></i> Infraestructura</h2>
+      <div class="infra-grid">
+        <div class="card infra-card">
+          <i class="fa-brands fa-linux infra-icon"></i>
+          <h3>OpenSUSE</h3>
+          <div class="chip-row">
+            <span class="chip"><i class="fa-solid fa-book"></i> Gran documentación</span>
+            <span class="chip"><i class="fa-solid fa-arrows-rotate"></i> Rolling release</span>
+          </div>
+        </div>
+        <div class="card infra-card">
+          <i class="fa-solid fa-server infra-icon" style="color: var(--dracula-cyan);"></i>
+          <h3>VPSDime</h3>
+          <div class="chip-row">
+            <span class="chip"><i class="fa-solid fa-coins"></i> Bajo costo</span>
+            <span class="chip"><i class="fa-brands fa-linux"></i> Soporte OpenSUSE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-group="admin">
+      <h2><i class="fa-solid fa-user-shield"></i> Configuración del Sistema</h2>
+      <div class="config-layout">
+        <div class="shield-hero">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Menor<br>privilegio</span>
+        </div>
+        <div class="config-items">
+          <div class="config-item"><i class="fa-solid fa-key"></i> Permisos mínimos</div>
+          <div class="config-item"><i class="fa-solid fa-boxes-packing"></i> Procesos aislados</div>
+          <div class="config-item"><i class="fa-solid fa-shield-virus"></i> Daño reducido</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-group="admin">
+      <h2><i class="fa-solid fa-gears"></i> Servicios Utilizados</h2>
+      <div class="service-flow">
+        <div class="card service-card">
+          <div class="icon-circle"><i class="fa-solid fa-gears"></i></div>
+          <h3>Apache</h3>
+          <span class="chip"><i class="fa-solid fa-globe"></i> Servidor web</span>
+        </div>
+        <div class="service-link"><i class="fa-solid fa-arrows-left-right"></i></div>
+        <div class="card service-card">
+          <div class="icon-circle" style="border-color: rgba(139, 233, 253, 0.5);"><i class="fa-solid fa-database" style="color: var(--dracula-cyan);"></i></div>
+          <h3>MariaDB</h3>
+          <span class="chip"><i class="fa-solid fa-table"></i> Base de datos</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-group="admin">
+      <h2><i class="fa-solid fa-cloud-arrow-up"></i> Copias de Seguridad</h2>
+      <div class="backup-layout">
+        <div class="backup-source">
+          <i class="fa-solid fa-database"></i>
+          <span>MariaDB</span>
+        </div>
+        <div class="backup-connector">
+          <div class="backup-sync"><i class="fa-solid fa-arrows-rotate"></i></div>
+        </div>
+        <div class="backup-dests">
+          <div class="card backup-dest">
+            <i class="fa-solid fa-hard-drive"></i>
+            <h3>Local</h3>
+            <span class="chip"><i class="fa-solid fa-calendar-week"></i> Semanal</span>
+          </div>
+          <div class="card backup-dest cloud">
+            <i class="fa-solid fa-cloud"></i>
+            <h3>Backblaze</h3>
+            <span class="chip"><i class="fa-solid fa-calendar-week"></i> Semanal</span>
+          </div>
+        </div>
+        <div class="chip-row">
+          <span class="chip"><i class="fa-solid fa-hand-pointer"></i> Backups manuales habilitados</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-group="admin">
+      <h2><i class="fa-solid fa-desktop"></i> Centro de Cómputos (ABML)</h2>
+      <div class="admin-window">
+        <div class="admin-bar">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <div class="bar-line"></div>
+        </div>
+        <div class="admin-body">
+          <div class="admin-action">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>Backups</span>
+          </div>
+          <div class="admin-action update">
+            <i class="fa-solid fa-arrows-rotate"></i>
+            <span>Actualizar</span>
+          </div>
+        </div>
+        <div class="admin-footer">
+          <i class="fa-solid fa-user-shield"></i>
+          Usuarios habilitados
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. CIERRE -->
+    <section>
+      <div class="closing-wrap">
+        <img src="minute.png" alt="Minute Logo" class="closing-logo">
+        <h1 class="title-zagora-gold closing-title">Gracias por escuchar</h1>
+        <div class="closing-company">MINUTE S.R.L.</div>
+        <div class="closing-url">minute.uy</div>
       </div>
     </section>
 
@@ -987,14 +856,69 @@
     hash: true,
     width: 1280,
     height: 720,
-    margin: 0.08,
+    margin: 0.06,
     minScale: 0.2,
     maxScale: 2.0,
     transition: 'slide',
-    backgroundTransition: 'fade'
+    transitionSpeed: 'slow',
+    backgroundTransition: 'fade',
+    navigationMode: 'linear'
   });
 
-  // Partículas con reducción de brillo/alfa a partir de la 2da diapositiva
+  /* ---------- iconos: autoajuste dentro de su círculo ---------- */
+  const fitIcons = () => {
+    document.querySelectorAll('.icon-circle').forEach((circle) => {
+      const icon = circle.querySelector('i');
+      if (!icon) return;
+      icon.style.transform = 'scale(1)';
+      const cr = circle.getBoundingClientRect().width;
+      const ir = icon.getBoundingClientRect();
+      if (!ir.width || !ir.height) return;
+      const safe = cr * 0.62;
+      const scale = Math.min(1, safe / ir.width, safe / ir.height);
+      if (scale < 0.995) icon.style.transform = `scale(${scale})`;
+    });
+    document.querySelectorAll('.tech-row-icon').forEach((icon) => {
+      icon.style.transform = 'scale(1)';
+      const rect = icon.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const scale = Math.min(1, 54 / rect.width, 50 / rect.height);
+      if (scale < 0.995) icon.style.transform = `scale(${scale})`;
+    });
+  };
+  Reveal.on('slidechanged', fitIcons);
+  window.addEventListener('load', fitIcons);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitIcons);
+  setTimeout(fitIcons, 600);
+
+  const corner = document.createElement('span');
+  corner.className = 'corner-br';
+  document.querySelectorAll('.slides > section').forEach((section) => {
+    if (section.querySelector('.cover-title, .closing-title')) return;
+    section.appendChild(corner.cloneNode());
+  });
+
+  /* ---------- transición vertical dentro de cada grupo ---------- */
+  (function () {
+    const groups = Reveal.getSlides().map(slide => slide.dataset.group || null);
+    const revealEl = document.querySelector('.reveal');
+
+    /* Reveal no pasa por Reveal.slide() en la navegación por teclado, así que
+       escuchamos el evento previo a la navegación (antes de aplicar transiciones) */
+    revealEl.addEventListener('beforeslidechange', (event) => {
+      const current = Reveal.getIndices().h;
+      const target = typeof event.indexh === 'number' ? event.indexh : current;
+      const vertical = target !== current && groups[current] !== null && groups[current] === groups[target];
+      if (vertical !== revealEl.classList.contains('vmove')) {
+        revealEl.classList.add('no-anim');
+        revealEl.classList.toggle('vmove', vertical);
+        void revealEl.offsetWidth;
+        revealEl.classList.remove('no-anim');
+      }
+    });
+  })();
+
+  /* ---------- fondo de partículas ---------- */
   const canvas = document.getElementById('particles-canvas');
   const ctx = canvas.getContext('2d');
   let particlesArray = [];
@@ -1010,9 +934,10 @@
     constructor() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 4 + 2;
-      this.speedX = (Math.random() - 0.5) * 0.8;
-      this.speedY = (Math.random() - 0.5) * 0.8;
+      this.size = Math.random() * 3.2 + 1.4;
+      this.speedX = (Math.random() - 0.5) * 0.65;
+      this.speedY = (Math.random() - 0.5) * 0.65;
+      this.color = Math.random() > 0.5 ? '255, 121, 198' : '255, 184, 108';
     }
     update() {
       this.x += this.speedX;
@@ -1023,15 +948,11 @@
       if (this.y < 0) this.y = canvas.height;
     }
     draw(isTitleSlide) {
-      const alpha = isTitleSlide ? 0.95 : 0.25;
-      const currentPink = `rgba(255, 121, 198, ${alpha})`;
-      const currentGold = `rgba(255, 184, 108, ${alpha})`;
-      
-      const chosenColor = Math.random() > 0.5 ? currentPink : currentGold;
-
-      ctx.fillStyle = chosenColor;
+      const alpha = isTitleSlide ? 0.85 : 0.2;
+      const color = `rgba(${this.color}, ${alpha})`;
+      ctx.fillStyle = color;
       ctx.shadowBlur = isTitleSlide ? 14 : 4;
-      ctx.shadowColor = chosenColor;
+      ctx.shadowColor = color;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fill();
@@ -1040,7 +961,7 @@
 
   function initParticles() {
     particlesArray = [];
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 78; i++) {
       particlesArray.push(new Particle());
     }
   }
@@ -1048,9 +969,8 @@
 
   function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const currentIndices = Reveal.getIndices();
-    const isTitleSlide = (currentIndices.h === 0 && currentIndices.v === 0);
-
+    const indices = (typeof Reveal !== 'undefined' && Reveal.getIndices) ? Reveal.getIndices() : { h: 0, v: 0 };
+    const isTitleSlide = (indices.h === 0 && indices.v === 0);
     particlesArray.forEach(p => {
       p.update();
       p.draw(isTitleSlide);
@@ -1059,29 +979,151 @@
   }
   animateParticles();
 
-  // Contador animado
-  let statsAnimated = false;
+  /* ---------- contadores ---------- */
+  function animateCounters(root) {
+    if (!root || !root.querySelectorAll) return;
+    root.querySelectorAll('.count-up').forEach(el => {
+      if (el.dataset.animated === '1') return;
+      el.dataset.animated = '1';
+      const target = Number(el.dataset.target || 0);
+      const suffix = el.dataset.suffix || '';
+      let count = 0;
+      const step = Math.max(1, Math.ceil(target / 25));
+      const tick = () => {
+        count += step;
+        if (count < target) {
+          el.textContent = count + suffix;
+          setTimeout(tick, 34);
+        } else {
+          el.textContent = target + suffix;
+        }
+      };
+      tick();
+    });
+  }
+
+  /* ---------- recorrido por el espacio físico ---------- */
+  const FLOOR_ZONES = {
+    recepcion: {
+      img: 'GymAreas/PlantaBaja_RecepcionCardio.jpg',
+      level: 'Planta Baja',
+      name: 'Recepción y Cardio',
+      icon: 'fa-bell-concierge',
+      color: '#ffb86c'
+    },
+    vestuarios: {
+      img: 'GymAreas/PlantaBaja_Lockers.jpg',
+      level: 'Planta Baja',
+      name: 'Lockers y Vestuarios',
+      icon: 'fa-door-open',
+      color: '#bd93f9'
+    },
+    banos: {
+      img: 'GymAreas/PlantaBaja_Baños.jpg',
+      level: 'Planta Baja',
+      name: 'Baños',
+      icon: 'fa-restroom',
+      color: '#8be9fd'
+    },
+    yoga: {
+      img: 'GymAreas/plantabaja_AreaYogaClases.jpg',
+      level: 'Planta Baja',
+      name: 'Yoga y Clases',
+      icon: 'fa-spa',
+      color: '#ff79c6'
+    },
+    musculacion: {
+      img: 'GymAreas/PrimerPiso_Musculacion.jpg',
+      level: 'Primer Piso',
+      name: 'Musculación',
+      icon: 'fa-dumbbell',
+      color: '#ffee8c'
+    },
+    multifuncion: {
+      img: 'GymAreas/PrimerPiso_Multifuncion.jpg',
+      level: 'Primer Piso',
+      name: 'Área Multifunción',
+      icon: 'fa-people-group',
+      color: '#50fa7b'
+    }
+  };
+
+  Object.values(FLOOR_ZONES).forEach(zone => {
+    const preload = new Image();
+    preload.src = zone.img;
+  });
+
+  function setFloorZone(key) {
+    const zone = FLOOR_ZONES[key];
+    if (!zone) return;
+
+    const img = document.getElementById('floor-img');
+    const current = document.getElementById('floor-current');
+    const currentIcon = document.getElementById('floor-current-icon');
+    const currentLevel = document.getElementById('floor-current-level');
+    const currentName = document.getElementById('floor-current-name');
+    const badge = document.getElementById('floor-level-badge');
+
+    if (!img || !current) return;
+
+    if (img.dataset.zone !== key) {
+      img.style.opacity = '0';
+      window.setTimeout(() => {
+        img.src = zone.img;
+        img.dataset.zone = key;
+        img.style.opacity = '1';
+      }, 150);
+    }
+
+    current.style.setProperty('--zone-color', zone.color);
+    currentIcon.className = 'fa-solid ' + zone.icon;
+    currentLevel.textContent = zone.level;
+    currentName.textContent = zone.name;
+    badge.textContent = zone.level;
+
+    document.querySelectorAll('.zone-chip').forEach(chip => {
+      chip.classList.toggle('active', chip.dataset.zone === key);
+    });
+  }
+
+  function visibleFloorZone() {
+    const chips = Array.from(document.querySelectorAll('.zone-chip'));
+    const visible = chips.filter(chip => !chip.classList.contains('fragment') || chip.classList.contains('visible'));
+    return visible.length ? visible[visible.length - 1].dataset.zone : 'recepcion';
+  }
+
+  document.querySelectorAll('.zone-chip').forEach(chip => {
+    chip.addEventListener('click', () => setFloorZone(chip.dataset.zone));
+  });
+
+  /* ---------- eventos de Reveal ---------- */
+  function handleSlideReady(slide) {
+    animateCounters(slide);
+    if (slide && slide.id === 'espacio-fisico') {
+      setFloorZone(visibleFloorZone());
+    }
+  }
+
+  Reveal.on('ready', event => {
+    const img = document.getElementById('floor-img');
+    if (img && !img.dataset.zone) img.dataset.zone = 'recepcion';
+    handleSlideReady(event.currentSlide);
+    setTimeout(() => handleSlideReady(Reveal.getCurrentSlide()), 100);
+  });
+
   Reveal.on('slidechanged', event => {
-    const statsGrid = event.currentSlide.querySelector('.market-stats-grid');
-    if (statsGrid && !statsAnimated) {
-      statsAnimated = true;
-      const numbers = statsGrid.querySelectorAll('.number');
-      numbers.forEach(numbersItem => {
-        const target = +numbersItem.getAttribute('data-target');
-        const suffix = numbersItem.getAttribute('data-suffix') || '';
-        let count = 0;
-        const speed = target / 25;
-        const updateCount = () => {
-          count += speed;
-          if (count < target) {
-            numbersItem.innerText = Math.ceil(count) + suffix;
-            setTimeout(updateCount, 35);
-          } else {
-            numbersItem.innerText = target + suffix;
-          }
-        };
-        updateCount();
-      });
+    handleSlideReady(event.currentSlide);
+  });
+
+  Reveal.on('fragmentshown', event => {
+    if (event.fragment && event.fragment.classList.contains('zone-chip')) {
+      setFloorZone(event.fragment.dataset.zone);
+    }
+  });
+
+  Reveal.on('fragmenthidden', event => {
+    if (event.fragment && event.fragment.classList.contains('zone-chip')) {
+      setFloorZone(visibleFloorZone());
     }
   });
 </script>
