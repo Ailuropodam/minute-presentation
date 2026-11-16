@@ -1500,7 +1500,8 @@ html, body {
 }
 
 .security-panel .shield i {
-  font-size: 2.8em;
+  font-size: 1.75em;
+  line-height: 1;
   color: var(--dracula-pink);
   filter: drop-shadow(0 0 14px rgba(255, 121, 198, 0.6));
 }
@@ -1690,33 +1691,39 @@ html, body {
   align-items: center;
 }
 
-.shield-hero {
-  width: 260px;
-  height: 260px;
-  margin: 0 auto;
-  border-radius: 50%;
+.shield-col {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 18px;
+}
+
+.shield-hero {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 8px;
   background: radial-gradient(circle, rgba(80, 250, 123, 0.14), rgba(24, 25, 32, 0.2) 70%);
   border: 1px solid rgba(80, 250, 123, 0.38);
   animation: pulseGlow 3.6s ease-in-out infinite;
 }
 
 .shield-hero i {
-  font-size: 4.6em;
+  font-size: 3.1em;
+  line-height: 1;
   color: var(--dracula-green);
   filter: drop-shadow(0 0 20px rgba(80, 250, 123, 0.5));
 }
 
-.shield-hero span {
+.shield-label {
+  margin: 0;
   font-family: 'Playfair Display', serif;
-  font-size: 0.7em;
-  color: var(--dracula-yellow);
+  font-size: 0.95em;
+  color: var(--dracula-yellow) !important;
   text-align: center;
-  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .config-items {
