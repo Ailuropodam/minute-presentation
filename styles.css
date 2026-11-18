@@ -1500,6 +1500,8 @@ html, body {
   line-height: 1;
   color: var(--dracula-pink);
   filter: drop-shadow(0 0 14px rgba(255, 121, 198, 0.6));
+  /* centrado óptico: el glifo del rompecabezas tiene el muesco abajo, se veía alto */
+  transform: translate(2px, 4px);
 }
 
 .security-panel h3 {
