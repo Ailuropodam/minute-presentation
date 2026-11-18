@@ -5,8 +5,8 @@
   <title>Minute - Defensa</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/dracula.min.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.min.css">
+  <link rel="stylesheet" href="vendor/reveal/dracula.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,12 +32,21 @@
       </div>
     </section>
 
-    <!-- 2. QR A MINUTE.UY (sin textos, QR grande) -->
+    <!-- 2. QRs: minute.uy + Drive -->
     <section>
       <div class="qr-hero-slide">
-        <div class="qr-hero-frame">
-          <img src="qr_minute.png" alt="QR para minute.uy">
-        </div>
+        <figure class="qr-hero-item">
+          <div class="qr-hero-frame">
+            <img src="qr_minute.png" alt="QR para minute.uy">
+          </div>
+          <figcaption class="qr-hero-caption">minute.uy</figcaption>
+        </figure>
+        <figure class="qr-hero-item">
+          <div class="qr-hero-frame qr-hero-frame-gold">
+            <img src="qr_drive.png" alt="QR para la carpeta de Drive con los archivos del proyecto">
+          </div>
+          <figcaption class="qr-hero-caption">drive.google.com</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -370,29 +379,6 @@
     </section>
 
     <section data-transition="convex">
-      <h2 style="color: var(--dracula-pink) !important; border-bottom-color: var(--dracula-pink);">
-        <i class="fa-solid fa-bug"></i> Debilidades
-      </h2>
-      <div class="foda-visual-grid">
-        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-pink);">
-          <i class="fa-solid fa-building big-icon" style="color: var(--dracula-pink);"></i>
-          <h3>Nuestra Empresa</h3>
-          <div class="letter-bg" style="color: var(--dracula-pink);">D</div>
-        </div>
-        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-pink);">
-          <i class="fa-solid fa-users-rectangle big-icon" style="color: var(--dracula-pink);"></i>
-          <h3>Competencia</h3>
-          <div class="letter-bg" style="color: var(--dracula-pink);">D</div>
-        </div>
-        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-pink);">
-          <i class="fa-solid fa-bolt big-icon" style="color: var(--dracula-pink);"></i>
-          <h3>FitPower<br>(Producto)</h3>
-          <div class="letter-bg" style="color: var(--dracula-pink);">D</div>
-        </div>
-      </div>
-    </section>
-
-    <section data-transition="convex">
       <h2 style="color: var(--accent-gold) !important; border-bottom-color: var(--accent-gold);">
         <i class="fa-solid fa-lightbulb"></i> Oportunidades
       </h2>
@@ -411,6 +397,29 @@
           <i class="fa-solid fa-bolt big-icon" style="color: var(--accent-gold);"></i>
           <h3>FitPower<br>(Producto)</h3>
           <div class="letter-bg" style="color: var(--accent-gold);">O</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-transition="convex">
+      <h2 style="color: var(--dracula-pink) !important; border-bottom-color: var(--dracula-pink);">
+        <i class="fa-solid fa-bug"></i> Debilidades
+      </h2>
+      <div class="foda-visual-grid">
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-pink);">
+          <i class="fa-solid fa-building big-icon" style="color: var(--dracula-pink);"></i>
+          <h3>Nuestra Empresa</h3>
+          <div class="letter-bg" style="color: var(--dracula-pink);">D</div>
+        </div>
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-pink);">
+          <i class="fa-solid fa-users-rectangle big-icon" style="color: var(--dracula-pink);"></i>
+          <h3>Competencia</h3>
+          <div class="letter-bg" style="color: var(--dracula-pink);">D</div>
+        </div>
+        <div class="card foda-visual-card" style="border-top: 4px solid var(--dracula-pink);">
+          <i class="fa-solid fa-bolt big-icon" style="color: var(--dracula-pink);"></i>
+          <h3>FitPower<br>(Producto)</h3>
+          <div class="letter-bg" style="color: var(--dracula-pink);">D</div>
         </div>
       </div>
     </section>
@@ -468,42 +477,47 @@
       <div class="floor-layout">
         <div class="floor-frame">
           <div class="floor-img-wrap">
-            <img id="floor-img" src="GymAreas/PlantaBaja_RecepcionCardio.jpg" alt="Área de recepción y cardio del gimnasio">
+            <img id="floor-img" src="GymAreas/PlantaBaja.jpeg" alt="Planta Baja del gimnasio con todas las zonas encendidas">
           </div>
           <div class="floor-level-badge">
             <i class="fa-solid fa-layer-group"></i>
             <span id="floor-level-badge">Planta Baja</span>
+          </div>
+          <div class="floor-toggle" aria-label="Piso mostrado" aria-hidden="true">
+            <button class="floor-toggle-btn is-active" data-floor="pb" role="tab">PLANTA BAJA</button>
+            <button class="floor-toggle-btn" data-floor="pp" role="tab">PRIMER PISO</button>
           </div>
         </div>
 
         <div class="floor-side">
           <div class="floor-current" id="floor-current">
             <div class="floor-current-icon">
-              <i id="floor-current-icon" class="fa-solid fa-bell-concierge"></i>
+              <i id="floor-current-icon" class="fa-solid fa-lightbulb"></i>
             </div>
             <div>
               <div class="floor-current-level" id="floor-current-level">Planta Baja</div>
-              <h3 class="floor-current-name" id="floor-current-name">Recepción y Cardio</h3>
+              <h3 class="floor-current-name" id="floor-current-name">Todas las zonas</h3>
             </div>
           </div>
 
           <div class="zone-list">
-            <button class="zone-chip" data-zone="recepcion" style="--zone-color: #ffb86c;">
-              <i class="fa-solid fa-bell-concierge"></i>
-              <span>Recepción y Cardio</span>
+            <button class="fragment zone-chip" data-zone="banos" style="--zone-color: #8be9fd;">
+              <i class="fa-solid fa-restroom"></i>
+              <span>Baños y duchas</span>
             </button>
             <button class="fragment zone-chip" data-zone="vestuarios" style="--zone-color: #bd93f9;">
               <i class="fa-solid fa-door-open"></i>
               <span>Lockers y Vestuarios</span>
             </button>
-            <button class="fragment zone-chip" data-zone="banos" style="--zone-color: #8be9fd;">
-              <i class="fa-solid fa-restroom"></i>
-              <span>Baños</span>
+            <button class="fragment zone-chip" data-zone="recepcion" style="--zone-color: #ffb86c;">
+              <i class="fa-solid fa-bell-concierge"></i>
+              <span>Recepción y Cardio</span>
             </button>
             <button class="fragment zone-chip" data-zone="yoga" style="--zone-color: #ff79c6;">
               <i class="fa-solid fa-spa"></i>
               <span>Yoga y Clases</span>
             </button>
+            <span class="fragment floor-pp-fragment" aria-hidden="true"></span>
             <button class="fragment zone-chip" data-zone="musculacion" style="--zone-color: #ffee8c;">
               <i class="fa-solid fa-dumbbell"></i>
               <span>Musculación</span>
@@ -564,45 +578,15 @@
     <!-- 11. PROGRAMACIÓN FRONTEND -->
     <section data-group="frontend">
       <h2><i class="fa-solid fa-palette"></i> Diseño Implementado</h2>
-      <div class="design-layout">
-        <div class="tech-stack">
-          <div class="card tech-row" style="--tech: #e34f26;">
-            <i class="fa-brands fa-html5 tech-row-icon"></i>
-            <div class="tech-row-copy">
-              <h3>HTML5</h3>
-              <p>Estructura semántica y accesible: secciones, navegación y formularios con etiquetas reales.</p>
-            </div>
-          </div>
-          <div class="card tech-row" style="--tech: #1572b6;">
-            <i class="fa-brands fa-css3-alt tech-row-icon"></i>
-            <div class="tech-row-copy">
-              <h3>CSS</h3>
-              <p>Estilos personalizados, animaciones y diseño responsive desde cero, sin plantillas.</p>
-            </div>
-          </div>
-          <div class="card tech-row" style="--tech: #f7df1e;">
-            <i class="fa-brands fa-js tech-row-icon"></i>
-            <div class="tech-row-copy">
-              <h3>JavaScript</h3>
-              <p>Interactividad del sitio: menú desplegable, slider de opiniones y efectos al hacer scroll.</p>
-            </div>
-          </div>
-          <div class="card tech-row" style="--tech: #7952b3;">
-            <i class="fa-brands fa-bootstrap tech-row-icon"></i>
-            <div class="tech-row-copy">
-              <h3>Bootstrap</h3>
-              <p>Grilla y utilidades responsive para adaptar el diseño de mobile a escritorio.</p>
-            </div>
+      <div class="palette-duo">
+        <div class="palette-column">
+          <div class="palette-grid-tall">
+            <div class="palette-block-tall" style="background: #050608; color: #ffffff;"><span>Fondo</span><b>#050608</b></div>
+            <div class="palette-block-tall" style="background: #4A28C4; color: #ffffff;"><span>Primario</span><b>#4A28C4</b></div>
+            <div class="palette-block-tall" style="background: #E5ACFF; color: #282a36;"><span>Acento</span><b>#E5ACFF</b></div>
           </div>
         </div>
-
-        <div class="design-side">
-          <div class="palette-grid">
-            <div class="palette-block" style="background: #050608; color: #ffffff;">Fondo<br>#050608</div>
-            <div class="palette-block" style="background: #4A28C4; color: #ffffff;">Primario<br>#4A28C4</div>
-            <div class="palette-block" style="background: #E5ACFF; color: #282a36;">Acento<br>#E5ACFF</div>
-          </div>
-
+        <div class="font-column">
           <div class="font-stack">
             <div class="font-item" style="font-family: 'PervitinaDex', sans-serif; color: var(--dracula-pink);">
               Pervitina Dex
@@ -730,7 +714,7 @@
       <h2><i class="fa-solid fa-server"></i> Infraestructura</h2>
       <div class="infra-grid">
         <div class="card infra-card">
-          <i class="fa-brands fa-linux infra-icon"></i>
+          <img class="infra-logo" src="assets/opensuse.svg" alt="openSUSE">
           <h3>OpenSUSE</h3>
           <div class="chip-row">
             <span class="chip"><i class="fa-solid fa-book"></i> Gran documentación</span>
@@ -738,13 +722,41 @@
           </div>
         </div>
         <div class="card infra-card">
-          <i class="fa-solid fa-server infra-icon" style="color: var(--dracula-cyan);"></i>
+          <img class="infra-logo infra-logo-wide" src="assets/vpsdime.svg" alt="VPSDime">
           <h3>VPSDime</h3>
           <div class="chip-row">
             <span class="chip"><i class="fa-solid fa-coins"></i> Bajo costo</span>
             <span class="chip"><i class="fa-brands fa-linux"></i> Soporte OpenSUSE</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- 12. CLOUDFLARE -->
+    <section data-group="admin">
+      <h2><i class="fa-solid fa-cloud"></i> Cloudflare</h2>
+      <p class="cf-explain">Todo el tráfico a <b>minute.uy</b> pasa primero por Cloudflare: decide si lo manda al servidor o lo bloquea.</p>
+      <div class="cf-flow">
+        <div class="cf-node">
+          <i class="fa-solid fa-user-astronaut cf-node-icon"></i>
+          <span class="cf-node-label">Visitante</span>
+        </div>
+        <i class="fa-solid fa-arrow-right-long cf-arrow"></i>
+        <div class="card cf-node cf-node-main">
+          <i class="fa-brands fa-cloudflare cf-logo"></i>
+          <h3>Cloudflare</h3>
+          <span class="chip"><i class="fa-solid fa-filter"></i> Proxy · CDN · Firewall</span>
+        </div>
+        <i class="fa-solid fa-arrow-right-long cf-arrow"></i>
+        <div class="cf-node">
+          <img class="cf-server-logo" src="assets/vpsdime.svg" alt="VPSDime">
+          <span class="cf-node-label">Servidor origen</span>
+        </div>
+      </div>
+      <div class="cf-chips">
+        <span class="chip"><i class="fa-solid fa-shield-halved"></i> Filtra tráfico sospechoso</span>
+        <span class="chip"><i class="fa-solid fa-bolt"></i> Acelera los assets</span>
+        <span class="chip"><i class="fa-solid fa-eye-slash"></i> Oculta la IP del servidor</span>
       </div>
     </section>
 
@@ -783,25 +795,56 @@
     <section data-group="admin">
       <h2><i class="fa-solid fa-cloud-arrow-up"></i> Copias de Seguridad</h2>
       <div class="backup-layout">
-        <div class="backup-source">
-          <i class="fa-solid fa-database"></i>
-          <span>MariaDB</span>
-        </div>
-        <div class="backup-connector">
-          <div class="backup-sync"><i class="fa-solid fa-arrows-rotate"></i></div>
-        </div>
-        <div class="backup-dests">
-          <div class="card backup-dest">
-            <i class="fa-solid fa-hard-drive"></i>
-            <h3>Local</h3>
-            <span class="chip"><i class="fa-solid fa-calendar-week"></i> Semanal</span>
+        <div class="backup-flow">
+          <div class="backup-source">
+            <i class="fa-solid fa-database"></i>
+            <div class="backup-source-copy">
+              <span class="backup-name">MariaDB</span>
+              <span class="backup-sub">Base de datos principal</span>
+            </div>
           </div>
-          <div class="card backup-dest cloud">
-            <i class="fa-solid fa-cloud"></i>
-            <h3>Backblaze</h3>
-            <span class="chip"><i class="fa-solid fa-calendar-week"></i> Semanal</span>
+
+          <svg class="backup-fork" viewBox="0 0 150 240" fill="none" role="presentation" aria-hidden="true">
+            <defs>
+              <linearGradient id="bf-common" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#8be9fd"/><stop offset="1" stop-color="#ffb86c"/>
+              </linearGradient>
+              <linearGradient id="bf-local" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#8be9fd"/><stop offset="1" stop-color="#50fa7b"/>
+              </linearGradient>
+              <linearGradient id="bf-cloud" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#8be9fd"/><stop offset="1" stop-color="#ff79c6"/>
+              </linearGradient>
+              <marker id="bf-arrow-local" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0L10,5L0,10z" fill="#50fa7b"/>
+              </marker>
+              <marker id="bf-arrow-cloud" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0L10,5L0,10z" fill="#ff79c6"/>
+              </marker>
+            </defs>
+            <path d="M6 120 H48" stroke="url(#bf-common)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M48 120 L48 42 H124" stroke="url(#bf-local)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#bf-arrow-local)"/>
+            <path d="M48 120 L48 198 H124" stroke="url(#bf-cloud)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#bf-arrow-cloud)"/>
+          </svg>
+
+          <div class="backup-dests-col">
+            <div class="card backup-dest">
+              <i class="fa-solid fa-hard-drive"></i>
+              <div class="backup-dest-copy">
+                <h3>Local</h3>
+                <span class="chip">Semanal</span>
+              </div>
+            </div>
+            <div class="card backup-dest cloud">
+              <i class="fa-solid fa-cloud"></i>
+              <div class="backup-dest-copy">
+                <h3>Backblaze</h3>
+                <span class="chip">Semanal</span>
+              </div>
+            </div>
           </div>
         </div>
+
         <div class="chip-row">
           <span class="chip"><i class="fa-solid fa-hand-pointer"></i> Backups manuales habilitados</span>
         </div>
@@ -847,7 +890,7 @@
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+<script src="vendor/reveal/reveal.min.js"></script>
 <script>
   Reveal.initialize({
     controls: true,
@@ -970,7 +1013,7 @@
   function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const indices = (typeof Reveal !== 'undefined' && Reveal.getIndices) ? Reveal.getIndices() : { h: 0, v: 0 };
-    const isTitleSlide = (indices.h === 0 && indices.v === 0);
+    const isTitleSlide = (indices.h === 0 && indices.v === 0) || indices.h === (typeof Reveal !== 'undefined' ? Reveal.getTotalSlides() - 1 : -1);
     particlesArray.forEach(p => {
       p.update();
       p.draw(isTitleSlide);
@@ -1004,6 +1047,20 @@
 
   /* ---------- recorrido por el espacio físico ---------- */
   const FLOOR_ZONES = {
+    pb: {
+      img: 'GymAreas/PlantaBaja.jpeg',
+      level: 'Planta Baja',
+      name: 'Todas las zonas',
+      icon: 'fa-lightbulb',
+      color: '#ffb86c'
+    },
+    pp: {
+      img: 'GymAreas/PrimerPiso.jpeg',
+      level: 'Primer Piso',
+      name: 'Todas las zonas',
+      icon: 'fa-lightbulb',
+      color: '#ffee8c'
+    },
     recepcion: {
       img: 'GymAreas/PlantaBaja_RecepcionCardio.jpg',
       level: 'Planta Baja',
@@ -1021,7 +1078,7 @@
     banos: {
       img: 'GymAreas/PlantaBaja_Baños.jpg',
       level: 'Planta Baja',
-      name: 'Baños',
+      name: 'Baños y duchas',
       icon: 'fa-restroom',
       color: '#8be9fd'
     },
@@ -1084,16 +1141,56 @@
     document.querySelectorAll('.zone-chip').forEach(chip => {
       chip.classList.toggle('active', chip.dataset.zone === key);
     });
+
+    const PB_ZONES = new Set(['pb', 'recepcion', 'vestuarios', 'banos', 'yoga']);
+    const activeFloor = PB_ZONES.has(key) ? 'pb' : 'pp';
+    document.querySelectorAll('.floor-toggle-btn').forEach(btn => {
+      btn.classList.toggle('is-active', btn.dataset.floor === activeFloor);
+    });
   }
 
+  const resolveFloorZone = (fragment) => {
+    if (!fragment) return null;
+    if (fragment.classList.contains('floor-pp-fragment')) return 'pp';
+    return fragment.dataset.zone || null;
+  };
+
+  const floorFromVisible = () => {
+    const section = document.getElementById('espacio-fisico');
+    if (!section) return 'pb';
+    const visible = Array.from(section.querySelectorAll('.fragment.visible'));
+    if (!visible.length) return 'pb';
+    const last = visible[visible.length - 1];
+    return resolveFloorZone(last) || 'pb';
+  };
+
+  const showFloorFragmentZone = (fragment) => {
+    const zone = resolveFloorZone(fragment);
+    if (zone) setFloorZone(zone);
+  };
+
+  const revertFloorFragmentZone = (fragment) => {
+    const section = fragment.closest('section');
+    const visible = section ? Array.from(section.querySelectorAll('.fragment.visible')) : [];
+    const last = visible[visible.length - 1];
+    setFloorZone(last ? (resolveFloorZone(last) || 'pb') : 'pb');
+  };
+
   function visibleFloorZone() {
-    const chips = Array.from(document.querySelectorAll('.zone-chip'));
-    const visible = chips.filter(chip => !chip.classList.contains('fragment') || chip.classList.contains('visible'));
-    return visible.length ? visible[visible.length - 1].dataset.zone : 'recepcion';
+    return floorFromVisible();
   }
 
   document.querySelectorAll('.zone-chip').forEach(chip => {
     chip.addEventListener('click', () => setFloorZone(chip.dataset.zone));
+  });
+
+  /* El piso avanza solo con la secuencia de fragmentos; el toggle es indicador */
+  Reveal.on('fragmentshown', event => {
+    if (event.fragment) showFloorFragmentZone(event.fragment);
+  });
+
+  Reveal.on('fragmenthidden', event => {
+    if (event.fragment) revertFloorFragmentZone(event.fragment);
   });
 
   /* ---------- eventos de Reveal ---------- */
@@ -1106,7 +1203,7 @@
 
   Reveal.on('ready', event => {
     const img = document.getElementById('floor-img');
-    if (img && !img.dataset.zone) img.dataset.zone = 'recepcion';
+    if (img && !img.dataset.zone) img.dataset.zone = 'pb';
     handleSlideReady(event.currentSlide);
     setTimeout(() => handleSlideReady(Reveal.getCurrentSlide()), 100);
   });
